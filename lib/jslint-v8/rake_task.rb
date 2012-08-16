@@ -21,6 +21,8 @@ module JSLintV8
     # custom lint options for the task
     attr_accessor :lint_options
 
+    attr_accessor :formatter
+
     # metaprogrammatically define accessors for each lint option expected
     Runner::DefaultOptions.keys.each do |key|
       define_method(key)       { lint_options[key] }
