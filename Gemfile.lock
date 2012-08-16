@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    jslint-v8 (1.1.1)
+      therubyracer (~> 0.10.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    libv8 (3.3.10.4)
+    rake (0.9.2.2)
+    test-unit (2.5.1)
+    therubyracer (0.10.2)
+      libv8 (~> 3.3.10)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  jslint-v8!
+  rake
+  test-unit
