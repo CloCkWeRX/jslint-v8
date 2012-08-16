@@ -18,7 +18,7 @@ module JSLintV8
             print_error_summary(lint_result)
             output_stream.print "\n"
          end
-         output_stream.print '/<checkstyle>' + "\n"
+         output_stream.print '</checkstyle>' + "\n"
          
       end
 
