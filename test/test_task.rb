@@ -131,10 +131,8 @@ class TestTask < Test::Unit::TestCase
       task.include_pattern = File.expand_path("fixtures/invalid.js", File.dirname(__FILE__))
       task.output_stream = StringIO.new(result, "w+")
     end
-
-    assert_raise RuntimeError do
-      Rake.application.lookup("lint").invoke
-    end
+   
+    Rake.application.lookup("lint").invoke
 
     assert_equal erb_fixture("cli-invalid-expected-output"), result
   end
