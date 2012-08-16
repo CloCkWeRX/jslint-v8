@@ -27,7 +27,12 @@ end
 print_usage if ARGV.empty?
 
 # set up a formatter for standard output
-formatter = JSLintV8::Formatter.new(STDOUT)
+
+if parser.options[:format] == 'checkstyle'
+   formatter = JSLintV8::CheckstyleFormatter.new(STDOUT)
+else
+   formatter = JSLintV8::Formatter.new(STDOUT)
+end
 
 # set up a runner
 runner = JSLintV8::Runner.new(ARGV)
@@ -37,9 +42,6 @@ runner.jslint_options.merge!(parser.options[:lint_options])
 lint_result = runner.run do |file, errors|
   formatter.tick(errors)
 end
-
-# put a separator line in between the ticks and any summary
-print "\n"
 
 # print a summary of failed files
 formatter.summary(ARGV, lint_result)

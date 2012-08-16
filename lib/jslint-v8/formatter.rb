@@ -13,6 +13,9 @@ module JSLintV8
       end
 
       def summary(tested_files, lint_result)
+         # put a separator line in between the ticks and any summary
+         output_stream.print "\n"
+         
          if lint_result.keys.any?
             print_error_summary(lint_result)
             output_stream.print "\n"
