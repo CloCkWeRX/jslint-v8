@@ -45,20 +45,22 @@ module JSLintV8
 
       # by default provide no overridden lint options
       @lint_options = {}
+      @formatter = "default"
 
       # if a block was given allow the block to call elements on this object
       yield self if block_given?
 
       # create the rake task
       new_task = task(name) do
-        formatter = JSLintV8::Formatter.new(output_stream)
+        if @formatter == 'checkstyle'
+          formatter = JSLintV8::CheckstyleFormatter.new(output_stream)
+        else
+          formatter = JSLintV8::Formatter.new(output_stream)
+        end
 
         lint_result = runner.run do |file, errors|
           formatter.tick(errors)
         end
-
-        # put a separator line in between the ticks and any summary
-        output_stream.print "\n"
 
         # print a summary of failed files
         formatter.summary(files_to_run, lint_result)
