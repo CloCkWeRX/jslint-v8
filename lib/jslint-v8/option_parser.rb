@@ -10,6 +10,7 @@ module JSLintV8
 
          @options = {}
          @options[:lint_options] = {}
+         @options[:format] = 'default'
 
          self.version = JSLintV8::Version::STRING
          self.banner  = "#{self.banner} <filepattern>..."
@@ -24,6 +25,16 @@ module JSLintV8
                options[:lint_options][option] = value
             end
          end
+
+         on('-c', "--checkstyle", "Set format to checkstyle") do
+            options[:format] = 'checkstyle'
+         end
+
+         on("-h", "--help", "Show this message") do
+            STDERR.puts self.help
+            exit(-1)
+         end
+
 
          on("-h", "--help", "Show this message") do
             STDERR.puts self.help
