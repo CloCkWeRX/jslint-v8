@@ -1,3 +1,4 @@
+require 'htmlentities'
 
 module JSLintV8
    class CheckstyleFormatter < Formatter
@@ -26,6 +27,7 @@ module JSLintV8
       def print_error_summary(result) 
          out = output_stream
 
+         coder = HTMLEntities.new
          # we iterate the sorted keys to prevent a brittle test and also the output
          # should be nicer as it will be guaranteed to be alphabetized
          result.keys.sort.each do |file|
@@ -34,7 +36,7 @@ module JSLintV8
             #out.print "#{file}:\n"
             out.print "<file name=\"#{file}\">\n"
             errors.each do |error|
-               out.print "\t<error line=\"#{error.line_number}\" column=\"#{error.character}\" severity=\"warning\" message=\"#{error.reason}\" source=\"net.csslint.Catfish\" />\n"
+               out.print "\t<error line=\"#{coder.encode(error.line_number, :decimal)}\" column=\"#{coder.encode(error.character, :decimal)}\" severity=\"warning\" message=\"#{coder.encode(error.reason, :decimal)}\" source=\"net.csslint.Catfish\" />\n"
 
                #source=\"" + generateSource(message.rule) +"\"
                # net.csslint.' + rule.name.replace(/\s/g,'')
