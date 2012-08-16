@@ -1,3 +1,5 @@
+require 'htmlentities'
+
 module JSLintV8
    class CheckstyleFormatter < Formatter
       attr_reader :output_stream
