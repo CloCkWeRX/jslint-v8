@@ -24,8 +24,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir.glob("test/**/*.rb")
 
   s.add_dependency "htmlentities", "~> 4.3.1"  
-  s.add_dependency "therubyracer", "~> 0.10.0"
+  s.add_dependency "therubyracer", "~> 0.11.0beta5"
   s.add_development_dependency "rake"
   s.add_development_dependency "test-unit"
 end
-
